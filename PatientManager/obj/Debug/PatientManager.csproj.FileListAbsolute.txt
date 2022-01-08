@@ -1,0 +1,7 @@
+C:\Users\joaog\source\repos\PatientsManagement\PatientManager\obj\Debug\PatientManager.csproj.AssemblyReference.cache
+C:\Users\joaog\source\repos\PatientsManagement\PatientManager\obj\Debug\PatientManager.csproj.CoreCompileInputs.cache
+C:\Users\joaog\source\repos\PatientsManagement\PatientManager\bin\PatientManager.dll.config
+C:\Users\joaog\source\repos\PatientsManagement\PatientManager\bin\PatientManager.dll
+C:\Users\joaog\source\repos\PatientsManagement\PatientManager\bin\PatientManager.pdb
+C:\Users\joaog\source\repos\PatientsManagement\PatientManager\obj\Debug\PatientManager.dll
+C:\Users\joaog\source\repos\PatientsManagement\PatientManager\obj\Debug\PatientManager.pdb
