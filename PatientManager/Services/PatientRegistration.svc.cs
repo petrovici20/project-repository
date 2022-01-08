@@ -12,95 +12,130 @@ namespace PatientManager.Services
     public class PatientRegistration : IPatientRegistration
     {
         // Connection String
-        readonly SqlConnection connection = new SqlConnection(@"Data Source=.;Initial Catalog=Hospital;Integrated Security=True");
+        readonly string connectionString = @"Data Source=.;Initial Catalog=Hospital;Integrated Security=True";
         
         public string AddPatient(Patient patient)
         {
             try
             {
-                #region SQL Commands
-                // Get all utente numbers
-                SqlCommand checkUtente = new SqlCommand("SELECT Utente FROM Patient", connection);
-
-                // Get the amount of beds available in a hospital unit
-                SqlCommand checkBeds = new SqlCommand("SELECT Beds_Available FROM Hospital_Unit WHERE Unit_Id = @Unit_Id", connection);
-                checkBeds.Parameters.AddWithValue("@Unit_Id", patient.HospitalUnit);
-
-                // Adds the patient
-                SqlCommand insertPatient = new SqlCommand("INSERT INTO Patient (Utente, Name, Age, Address, Contact, Unit_ID, RNCCI_Typology) " +
-                                                          "VALUES (@Utente, @Name, @Age, @Address, @Contact, @Unit_Id, @RNCCI)", connection);
-                insertPatient.Parameters.AddWithValue("@Utente", patient.Utente);
-                insertPatient.Parameters.AddWithValue("@Name", patient.Name);
-                insertPatient.Parameters.AddWithValue("@Age", patient.Age.ToString());
-                insertPatient.Parameters.AddWithValue("@Address", patient.Address);
-                insertPatient.Parameters.AddWithValue("@Contact", patient.Contact);
-                insertPatient.Parameters.AddWithValue("@Unit_Id", patient.HospitalUnit);
-                insertPatient.Parameters.AddWithValue("@RNCCI", patient.RNCCITypology);
-
-                // Decrease by 1 the amount of beds in the hospital unit
-                SqlCommand decreaseBeds = new SqlCommand("SELECT Beds_Available FROM Hospital_Unit WHERE Unit_Id = @Unit_Id", connection);
-
-                #endregion
-
-                connection.Open();
-
-                // Returns if the Utente already is in the database
-                using (SqlDataReader reader = checkUtente.ExecuteReader())
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    while(reader.Read())
+                    connection.Open();
+
+                    #region SQL Commands
+                    // Get all utente numbers
+                    SqlCommand checkUtente = new SqlCommand("SELECT Utente FROM Patient", connection);
+
+                    // Get the amount of beds available in a hospital unit
+                    SqlCommand checkBeds = new SqlCommand("SELECT Beds_Available FROM Hospital_Unit WHERE Unit_Id = @Unit_Id", connection);
+                    checkBeds.Parameters.AddWithValue("@Unit_Id", patient.HospitalUnit);
+
+                    // Adds the patient
+                    SqlCommand insertPatient = new SqlCommand("INSERT INTO Patient (Utente, Name, Age, Address, Contact, Unit_ID, RNCCI_Typology) " +
+                                                              "VALUES (@Utente, @Name, @Age, @Address, @Contact, @Unit_Id, @RNCCI)", connection);
+                    insertPatient.Parameters.AddWithValue("@Utente", patient.Utente);
+                    insertPatient.Parameters.AddWithValue("@Name", patient.Name);
+                    insertPatient.Parameters.AddWithValue("@Age", patient.Age.ToString());
+                    insertPatient.Parameters.AddWithValue("@Address", patient.Address);
+                    insertPatient.Parameters.AddWithValue("@Contact", patient.Contact);
+                    insertPatient.Parameters.AddWithValue("@Unit_Id", patient.HospitalUnit);
+                    insertPatient.Parameters.AddWithValue("@RNCCI", patient.RNCCITypology);
+
+                    // Decrease by 1 the amount of beds in the hospital unit
+                    SqlCommand decreaseBeds = new SqlCommand("SELECT Beds_Available FROM Hospital_Unit WHERE Unit_Id = @Unit_Id", connection);
+
+                    #endregion
+
+                    // Returns if the Utente already is in the database
+                    using (SqlDataReader reader = checkUtente.ExecuteReader())
                     {
-                        if(patient.Utente == Convert.ToInt32(reader["Utente"].ToString()))
+                        while (reader.Read())
                         {
-                            return "Utente taken";
+                            if (patient.Utente == Convert.ToInt32(reader["Utente"].ToString()))
+                            {
+                                return $"Utente {patient.Utente} taken";
+                            }
                         }
                     }
-                }
 
-                // Returns if there is no beds available
-                using (SqlDataReader reader = checkBeds.ExecuteReader())
-                {
-                    while (reader.Read())
+                    // Returns if there is no beds available
+                    using (SqlDataReader reader = checkBeds.ExecuteReader())
                     {
-                        int beds = Convert.ToInt32(reader["Beds_Available"].ToString());
-
-                        if(beds == 0)
+                        while (reader.Read())
                         {
-                            return "No beds available in this Unit";
+                            int beds = Convert.ToInt32(reader["Beds_Available"].ToString());
+
+                            if (beds == 0)
+                            {
+                                return "No beds available in this Unit";
+                            }
                         }
                     }
-                }
 
-                // Inserts the patient in the database
-                int rows = insertPatient.ExecuteNonQuery();
+                    // Inserts the patient in the database
+                    int rows = insertPatient.ExecuteNonQuery();
 
-                if (rows > 0)
-                {
-                    // Decreases the number of beds in the database
-                    rows = decreaseBeds.ExecuteNonQuery();
                     if (rows > 0)
                     {
-                        return "Patient Added";
+                        // Decreases the number of beds in the database
+                        rows = decreaseBeds.ExecuteNonQuery();
+                        if (rows > 0)
+                        {
+                            return "Patient Added";
+                        }
+                        else
+                        {
+                            return "Patient inserted but the beds did not decrease";
+                        }
                     }
-                    else
-                    {
-                        return "Patient inserted but the beds did not decrease";
-                    }
+                    else return "Patient could not be added";
                 }
-                else return "Patient could not be added";
             }
             catch (Exception)
             {
                 return "Some unknown error happend";
             }
-            finally
-            {
-                connection.Close();
-            }
         }
 
-        public string AddPatientBulk(List<Patient> patients)
+        public void AddPatientBulk(IEnumerable<Patient> patients)
         {
-            throw new NotImplementedException();
+            try
+            {
+                const string queryPatient = @"INSERT INTO Patient (Utente, Name, Age, Address, Contact, Unit_ID, RNCCI_Typology) " +
+                                      "VALUES (@Utente, @Name, @Age, @Address, @Contact, @Unit_Id, @RNCCI)";
+
+                const string queryBed = @"SELECT Beds_Available FROM Hospital_Unit WHERE Unit_Id = @Unit_Id";
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand insertPatient = new SqlCommand(queryPatient, connection))
+                    {
+                        foreach (Patient patient in patients)
+                        {
+                            insertPatient.Parameters.AddWithValue("@Utente", patient.Utente);
+                            insertPatient.Parameters.AddWithValue("@Name", patient.Name);
+                            insertPatient.Parameters.AddWithValue("@Age", patient.Age.ToString());
+                            insertPatient.Parameters.AddWithValue("@Address", patient.Address);
+                            insertPatient.Parameters.AddWithValue("@Contact", patient.Contact);
+                            insertPatient.Parameters.AddWithValue("@Unit_Id", patient.HospitalUnit);
+                            insertPatient.Parameters.AddWithValue("@RNCCI", patient.RNCCITypology);
+
+                            insertPatient.ExecuteNonQuery();
+                            
+                            using (SqlCommand decreaseBeds = new SqlCommand(queryBed, connection))
+                            {
+                                decreaseBeds.ExecuteNonQuery();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

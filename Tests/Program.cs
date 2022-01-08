@@ -7,10 +7,11 @@ namespace Tests
     {
         static void Main(string[] args)
         {
-            AddPacient();
+            AddPatient();
+            AddPatientBulk();
         }
 
-        static async void AddPacient()
+        static async void AddPatient()
         {
             PatientRegistrationClient client = new();
 
@@ -28,6 +29,11 @@ namespace Tests
             Console.WriteLine(result);
 
             client.Close();
+        }
+
+        static async void AddPatientBulk()
+        {
+            throw new NotImplementedException;
         }
     }
 }

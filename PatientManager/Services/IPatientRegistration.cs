@@ -29,6 +29,6 @@ namespace PatientManager.Services
         /// <param name="patients"></param>
         /// <returns></returns>
         [OperationContract]
-        string AddPatientBulk(List<Patient> patients);
+        void AddPatientBulk(IEnumerable<Patient> patients);
     }
 }
