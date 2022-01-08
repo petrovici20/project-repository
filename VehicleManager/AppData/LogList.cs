@@ -9,7 +9,7 @@ using VehicleManager.Models;
 namespace VehicleManager.AppData
 {
     /// <summary>
-    /// 
+    /// converting class from json to lists 
     /// </summary>
     public class LogList
     {
@@ -18,7 +18,7 @@ namespace VehicleManager.AppData
         readonly string fileName = AppDomain.CurrentDomain.BaseDirectory + @"..\net5.0\AppData\Logs.json";
 
         /// <summary>
-        /// 
+        /// import the logs from the json file
         /// </summary>
         public LogList()
         {
@@ -26,20 +26,20 @@ namespace VehicleManager.AppData
         }
 
         /// <summary>
-        /// 
+        /// returns the log list
         /// </summary>
         public List<Log> Logs { get => logs; private set { } }
 
         /// <summary>
-        /// 
+        /// adding logs method
         /// </summary>
         /// <param name="log"></param>
         public void AddLog(Log log) => logs.Add(log);
 
         /// <summary>
-        /// 
+        /// reads the json file and deserialize it, otherwise throw exeception
         /// </summary>
-        /// <returns></returns>
+        /// <returns>a converted list of logs</returns>
         private List<Log> ImportJson()
         {
             try
@@ -57,7 +57,7 @@ namespace VehicleManager.AppData
         }
 
         /// <summary>
-        /// 
+        /// takes the list and serialize it, otherwise throws exception
         /// </summary>
         /// <param name="logs"></param>
         private void ExportJson(List<Log> logs)

@@ -9,16 +9,16 @@ using VehicleManager.Models;
 namespace VehicleManager.Controllers
 {
     /// <summary>
-    /// 
+    /// rest service for vehicles's management
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class LogsController : ControllerBase
     {
         /// <summary>
-        /// 
+        /// conversion of the json file to list and checking of the specifications
         /// </summary>
-        /// <returns></returns>
+        /// <returns>list of specified vehicles</returns>
         // GET: api/logs
         [HttpGet]
         public IEnumerable<Log> Get()
@@ -30,9 +30,9 @@ namespace VehicleManager.Controllers
         }
 
         /// <summary>
-        /// 
+        /// conversion of the json file to list and checking of the specifications
         /// </summary>
-        /// <returns></returns>
+        /// <returns>list of specified logs</returns>
         // GET: api/logs/user
         [HttpGet("{user}")]
         public IEnumerable<Log> Get(string user)

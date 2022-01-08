@@ -9,17 +9,17 @@ using VehicleManager.Models;
 namespace VehicleManager.Controllers
 {
     /// <summary>
-    /// 
+    /// rest service for vehicles's management
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class VehiclesController : ControllerBase
     {
         /// <summary>
-        /// 
+        /// conversion of the json file to list and checking of the specifications
         /// </summary>
         /// <param name="request"></param>
-        /// <returns></returns>
+        /// <returns>list of specified vehicles</returns>
         // GET api/vehicles/{ "User" : "###", "Zone" : "###", "Date" : "####/##/##"}
         [HttpGet("{request}")]
         public IEnumerable<Vehicle> Get(RequestSpecification request)
