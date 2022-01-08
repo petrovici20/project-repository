@@ -88,10 +88,6 @@ namespace PatientManager.Services
                             {
                                 return "No beds available in this Unit";
                             }
-                            else
-                            {
-                                return "alallalala";
-                            }
                         }
                     }
 
