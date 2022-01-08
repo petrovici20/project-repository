@@ -49,9 +49,13 @@ namespace PatientManager.Services
                 {
                     while(reader.Read())
                     {
-                        if(patient.Utente == Convert.ToInt32(reader["Utente"].ToString()))
+                        if (patient.Utente == Convert.ToInt32(reader["Utente"].ToString()))
                         {
                             return "Utente taken";
+                        }
+                        else
+                        {
+                            return "Utente not taken!"; 
                         }
                     }
                 }
