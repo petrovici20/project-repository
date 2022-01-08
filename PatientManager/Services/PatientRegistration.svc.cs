@@ -26,7 +26,7 @@ namespace PatientManager.Services
                 SqlCommand checkBeds = new SqlCommand("SELECT Beds_Available FROM Hospital_Unit WHERE Unit_Id = @Unit_Id", connection);
                 checkBeds.Parameters.AddWithValue("@Unit_Id", patient.HospitalUnit);
 
-                // Inserts the patient
+                // Adds the patient
                 SqlCommand insertPatient = new SqlCommand("INSERT INTO Patient (Utente, Name, Age, Address, Contact, Unit_ID, RNCCI_Typology) " +
                                                           "VALUES (@Utente, @Name, @Age, @Address, @Contact, @Unit_Id, @RNCCI)", connection);
                 insertPatient.Parameters.AddWithValue("@Utente", patient.Utente);
