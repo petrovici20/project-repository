@@ -52,14 +52,17 @@ namespace PatientManager.Services
                     #endregion
 
 
-                    // Returns if the Hospital Unit is invalid
-                    using (SqlDataReader reader = checkUnit.ExecuteReader())
+                    if(patient.RNCCITypology != Tools.RNCCI.EDCCI)
                     {
-                        while (reader.Read())
+                        // Returns if the Hospital Unit is invalid
+                        using (SqlDataReader reader = checkUnit.ExecuteReader())
                         {
-                            if (patient.HospitalUnit != Convert.ToInt32(reader["Unit_Id"].ToString()))
+                            while (reader.Read())
                             {
-                                return $"Invalid Hospital Unit Id: {patient.HospitalUnit}";
+                                if (patient.HospitalUnit != Convert.ToInt32(reader["Unit_Id"].ToString()))
+                                {
+                                    return $"Invalid Hospital Unit Id: {patient.HospitalUnit}";
+                                }
                             }
                         }
                     }
