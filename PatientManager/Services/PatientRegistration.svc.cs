@@ -23,12 +23,16 @@ namespace PatientManager.Services
                     connection.Open();
 
                     #region SQL Commands
+
                     // Get all utente numbers
                     SqlCommand checkUtente = new SqlCommand("SELECT Utente FROM Patient", connection);
 
                     // Get the amount of beds available in a hospital unit
                     SqlCommand checkBeds = new SqlCommand("SELECT Beds_Available FROM Hospital_Unit WHERE Unit_Id = @Unit_Id", connection);
                     checkBeds.Parameters.AddWithValue("@Unit_Id", patient.HospitalUnit);
+
+                    // Get the hospital unit id
+                    SqlCommand checkUnit = new SqlCommand("SELECT Unit_Id FROM Hospital_Unit", connection);
 
                     // Adds the patient
                     SqlCommand insertPatient = new SqlCommand("INSERT INTO Patient (Utente, Name, Age, Address, Contact, Unit_ID, RNCCI_Typology) " +
@@ -42,9 +46,23 @@ namespace PatientManager.Services
                     insertPatient.Parameters.AddWithValue("@RNCCI", patient.RNCCITypology);
 
                     // Decrease by 1 the amount of beds in the hospital unit
-                    SqlCommand decreaseBeds = new SqlCommand("SELECT Beds_Available FROM Hospital_Unit WHERE Unit_Id = @Unit_Id", connection);
+                    SqlCommand decreaseBeds = new SqlCommand("UPDATE Hospital_Unit SET Beds_Available = Beds_Available - 1 WHERE Unit_Id = @Unit_Id", connection);
+                    decreaseBeds.Parameters.AddWithValue("@Unit_Id", patient.HospitalUnit);
 
                     #endregion
+
+
+                    // Returns if the Hospital Unit is invalid
+                    using (SqlDataReader reader = checkUnit.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            if (patient.HospitalUnit != Convert.ToInt32(reader["Unit_Id"].ToString()))
+                            {
+                                return $"Invalid Hospital Unit Id: {patient.HospitalUnit}";
+                            }
+                        }
+                    }
 
                     // Returns if the Utente already is in the database
                     using (SqlDataReader reader = checkUtente.ExecuteReader())
@@ -91,9 +109,9 @@ namespace PatientManager.Services
                     else return "Patient could not be added";
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return "Some unknown error happend";
+                throw new Exception(ex.Message);
             }
         }
 
