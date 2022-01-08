@@ -55,6 +55,7 @@ namespace PatientManager.Services
                             {
                                 return $"Utente {patient.Utente} taken";
                             }
+                            
                         }
                     }
 
@@ -68,6 +69,10 @@ namespace PatientManager.Services
                             if (beds == 0)
                             {
                                 return "No beds available in this Unit";
+                            }
+                            else
+                            {
+                                return "alallalala";
                             }
                         }
                     }
