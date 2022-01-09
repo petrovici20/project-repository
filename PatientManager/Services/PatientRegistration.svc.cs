@@ -1,6 +1,8 @@
-﻿using PatientManager.Models;
+﻿using Newtonsoft.Json;
+using PatientManager.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -14,6 +16,35 @@ namespace PatientManager.Services
         // Connection String
         readonly string connectionString = @"Data Source=.;Initial Catalog=Hospital;Integrated Security=True";
         
+        //public string GetPatients()
+        //{
+        //    try
+        //    {
+        //        using(SqlConnection connection = new SqlConnection(connectionString))
+        //        {
+        //            connection.Open();
+        //            DataTable data = new DataTable();
+
+        //            using (SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Patient", connection))
+        //            {
+        //                adapter.Fill(data);
+        //                if (data.Rows.Count > 0)
+        //                {
+        //                    return JsonConvert.SerializeObject(data);
+        //                }
+        //                else
+        //                {
+        //                    return null;
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception(ex.Message);
+        //    }
+        //}
+
         public string AddPatient(Patient patient)
         {
             try
