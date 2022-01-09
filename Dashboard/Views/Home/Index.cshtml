@@ -1,0 +1,139 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card header">
+                Patients by RNCCI
+            </div>
+            <div class="card-body">
+                <canvas class="my-4 h-25" id="pie1">
+                </canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card header">
+                Patients by Hospital Unit
+            </div>
+            <div class="card-body">
+                <canvas class="my-4 h-25" id="pie2">
+                </canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card header">
+                Top 10 Hospital Units by visits
+            </div>
+            <div class="card-body">
+                <canvas class="my-4 h-25" id="bar1">
+                </canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card header">
+                Last 10 Users by vehicle requests (30 days)
+            </div>
+            <div class="card-body">
+                <canvas class="my-4 h-25" id="bar2">
+                </canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js" integrity="sha512-TW5s0IT/IppJtu76UbysrBH9Hy/5X41OTAbQuffZFU6lQ1rdcLHzpU5BzVvr/YFykoiMYZVWlr/PX1mDcfM9Qg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript">
+        
+    var piechart1 = document.getElementById("pie1").getContext("2d");
+    var mypiechart1 = new Chart(piechart1, {
+        type: "pie",
+        data: {
+            labels: ["UC", "UMDR", "ULDM", "EDCCI"],
+            datasets: [{
+                data: [100, 200, 300, 20],
+                backgroundColor: "rgba(6, 128, 250)"
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    var piechart2 = document.getElementById("pie2").getContext("2d");
+    var mypiechart2 = new Chart(piechart2, {
+        type: "pie",
+        data: {
+            labels: ["101", "102", "103"],
+            datasets: [{
+                data: [100, 200, 300],
+                backgroundColor: "rgba(6, 128, 250)"
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    var barchart1 = document.getElementById("bar1").getContext("2d");
+    var mybarchart1 = new Chart(barchart1, {
+        type: "bar",
+        data: {
+            labels: ["101", "102", "103", "104", "105", "106", "107", "108", "109", "110"],
+            datasets: [{
+                label: "Visits",
+                data: [100, 200, 300],
+                backgroundColor: "rgba(6, 128, 250)"
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    var barchart2 = document.getElementById("bar2").getContext("2d");
+    var mybarchart2 = new Chart(barchart2, {
+        type: "bar",
+        data: {
+            labels: ["101", "102", "103", "104", "105", "106", "107", "108", "109", "110"],
+            datasets: [{
+                label: "Visits",
+                data: [100, 200, 300],
+                backgroundColor: "rgba(6, 128, 250)"
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
