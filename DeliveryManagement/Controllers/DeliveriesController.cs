@@ -109,7 +109,7 @@ namespace DeliveryManagement.Controllers
                 connection.Open();
 
                 // Query command
-                using SqlCommand command = new("INSERT INTO Delivery (Request_Id, Hospital_Unit_Id, Material_Name, Material_Quantity,Delivered) " +
+                using SqlCommand command = new("INSERT INTO Delivery (Request_Id, Hospital_Unit_Id, Material_Name, Material_Quantity, Delivered) " +
                                                 "VALUES (@Request, @Unit, @Name, @Quantity, @Delivered)", connection);
 
                 // Iteration insert
