@@ -31,7 +31,11 @@ namespace PatientManager.Services
         [OperationContract]
         void AddPatientBulk(IEnumerable<Patient> patients);
 
-        //[OperationContract]
-        //string GetPatients();
+        /// <summary>
+        /// Gets all the patients in the database
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        string GetPatients();
     }
 }
