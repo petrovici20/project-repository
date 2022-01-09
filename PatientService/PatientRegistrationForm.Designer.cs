@@ -50,28 +50,30 @@ namespace PatientService
             // 
             // textBoxUnit
             // 
-            this.textBoxUnit.Location = new System.Drawing.Point(12, 399);
+            this.textBoxUnit.Location = new System.Drawing.Point(14, 532);
+            this.textBoxUnit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxUnit.Name = "textBoxUnit";
             this.textBoxUnit.PlaceholderText = "e.g. 101";
-            this.textBoxUnit.Size = new System.Drawing.Size(414, 23);
+            this.textBoxUnit.Size = new System.Drawing.Size(473, 27);
             this.textBoxUnit.TabIndex = 26;
             // 
             // labelUnit
             // 
             this.labelUnit.AutoSize = true;
             this.labelUnit.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelUnit.Location = new System.Drawing.Point(12, 375);
+            this.labelUnit.Location = new System.Drawing.Point(14, 500);
             this.labelUnit.Name = "labelUnit";
-            this.labelUnit.Size = new System.Drawing.Size(150, 21);
+            this.labelUnit.Size = new System.Drawing.Size(188, 28);
             this.labelUnit.TabIndex = 32;
             this.labelUnit.Text = "Enter hospital unit: *";
             // 
             // buttonReset
             // 
             this.buttonReset.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonReset.Location = new System.Drawing.Point(91, 446);
+            this.buttonReset.Location = new System.Drawing.Point(104, 595);
+            this.buttonReset.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonReset.Name = "buttonReset";
-            this.buttonReset.Size = new System.Drawing.Size(70, 28);
+            this.buttonReset.Size = new System.Drawing.Size(80, 37);
             this.buttonReset.TabIndex = 29;
             this.buttonReset.Text = "Reset";
             this.buttonReset.UseVisualStyleBackColor = true;
@@ -79,20 +81,22 @@ namespace PatientService
             // 
             // dateTimePickerAge
             // 
-            this.dateTimePickerAge.Location = new System.Drawing.Point(12, 155);
+            this.dateTimePickerAge.Location = new System.Drawing.Point(14, 207);
+            this.dateTimePickerAge.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dateTimePickerAge.MaxDate = new System.DateTime(2300, 1, 1, 0, 0, 0, 0);
             this.dateTimePickerAge.MinDate = new System.DateTime(1930, 1, 1, 0, 0, 0, 0);
             this.dateTimePickerAge.Name = "dateTimePickerAge";
-            this.dateTimePickerAge.Size = new System.Drawing.Size(414, 23);
+            this.dateTimePickerAge.Size = new System.Drawing.Size(473, 27);
             this.dateTimePickerAge.TabIndex = 20;
             this.dateTimePickerAge.Value = new System.DateTime(2022, 1, 6, 0, 0, 0, 0);
             // 
             // buttonSubmit
             // 
             this.buttonSubmit.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonSubmit.Location = new System.Drawing.Point(12, 446);
+            this.buttonSubmit.Location = new System.Drawing.Point(14, 595);
+            this.buttonSubmit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonSubmit.Name = "buttonSubmit";
-            this.buttonSubmit.Size = new System.Drawing.Size(70, 28);
+            this.buttonSubmit.Size = new System.Drawing.Size(80, 37);
             this.buttonSubmit.TabIndex = 28;
             this.buttonSubmit.Text = "Submit";
             this.buttonSubmit.UseVisualStyleBackColor = true;
@@ -102,9 +106,9 @@ namespace PatientService
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(12, 315);
+            this.label7.Location = new System.Drawing.Point(14, 420);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(77, 21);
+            this.label7.Size = new System.Drawing.Size(97, 28);
             this.label7.TabIndex = 31;
             this.label7.Text = "Contact: *";
             // 
@@ -116,43 +120,47 @@ namespace PatientService
             "UMDR",
             "ULDM",
             "EDCCI"});
-            this.comboBoxRNCCI.Location = new System.Drawing.Point(12, 220);
+            this.comboBoxRNCCI.Location = new System.Drawing.Point(14, 293);
+            this.comboBoxRNCCI.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBoxRNCCI.Name = "comboBoxRNCCI";
-            this.comboBoxRNCCI.Size = new System.Drawing.Size(414, 23);
+            this.comboBoxRNCCI.Size = new System.Drawing.Size(473, 28);
             this.comboBoxRNCCI.TabIndex = 22;
+            this.comboBoxRNCCI.SelectedIndexChanged += new System.EventHandler(this.comboBoxRNCCI_SelectedIndexChanged);
             // 
             // textBoxAddress
             // 
-            this.textBoxAddress.Location = new System.Drawing.Point(12, 282);
+            this.textBoxAddress.Location = new System.Drawing.Point(14, 376);
+            this.textBoxAddress.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxAddress.Name = "textBoxAddress";
-            this.textBoxAddress.Size = new System.Drawing.Size(414, 23);
+            this.textBoxAddress.Size = new System.Drawing.Size(473, 27);
             this.textBoxAddress.TabIndex = 23;
             // 
             // labelAddress
             // 
             this.labelAddress.AutoSize = true;
             this.labelAddress.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelAddress.Location = new System.Drawing.Point(12, 258);
+            this.labelAddress.Location = new System.Drawing.Point(14, 344);
             this.labelAddress.Name = "labelAddress";
-            this.labelAddress.Size = new System.Drawing.Size(118, 21);
+            this.labelAddress.Size = new System.Drawing.Size(146, 28);
             this.labelAddress.TabIndex = 30;
             this.labelAddress.Text = "Enter address: *";
             // 
             // textBoxContact
             // 
-            this.textBoxContact.Location = new System.Drawing.Point(12, 339);
+            this.textBoxContact.Location = new System.Drawing.Point(14, 452);
+            this.textBoxContact.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxContact.Name = "textBoxContact";
             this.textBoxContact.PlaceholderText = "## ### ####";
-            this.textBoxContact.Size = new System.Drawing.Size(414, 23);
+            this.textBoxContact.Size = new System.Drawing.Size(473, 27);
             this.textBoxContact.TabIndex = 25;
             // 
             // labelRNCCI
             // 
             this.labelRNCCI.AutoSize = true;
             this.labelRNCCI.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelRNCCI.Location = new System.Drawing.Point(12, 196);
+            this.labelRNCCI.Location = new System.Drawing.Point(14, 261);
             this.labelRNCCI.Name = "labelRNCCI";
-            this.labelRNCCI.Size = new System.Drawing.Size(177, 21);
+            this.labelRNCCI.Size = new System.Drawing.Size(221, 28);
             this.labelRNCCI.TabIndex = 27;
             this.labelRNCCI.Text = "Enter RNCCI Typology: *";
             // 
@@ -160,51 +168,53 @@ namespace PatientService
             // 
             this.labelAge.AutoSize = true;
             this.labelAge.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelAge.Location = new System.Drawing.Point(12, 131);
+            this.labelAge.Location = new System.Drawing.Point(14, 175);
             this.labelAge.Name = "labelAge";
-            this.labelAge.Size = new System.Drawing.Size(149, 21);
+            this.labelAge.Size = new System.Drawing.Size(188, 28);
             this.labelAge.TabIndex = 24;
             this.labelAge.Text = "Enter date of birth: *";
             // 
             // textBoxUtente
             // 
-            this.textBoxUtente.Location = new System.Drawing.Point(12, 94);
+            this.textBoxUtente.Location = new System.Drawing.Point(14, 125);
+            this.textBoxUtente.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxUtente.Name = "textBoxUtente";
-            this.textBoxUtente.Size = new System.Drawing.Size(414, 23);
+            this.textBoxUtente.Size = new System.Drawing.Size(473, 27);
             this.textBoxUtente.TabIndex = 19;
             // 
             // labelUtente
             // 
             this.labelUtente.AutoSize = true;
             this.labelUtente.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelUtente.Location = new System.Drawing.Point(12, 70);
+            this.labelUtente.Location = new System.Drawing.Point(14, 93);
             this.labelUtente.Name = "labelUtente";
-            this.labelUtente.Size = new System.Drawing.Size(187, 21);
+            this.labelUtente.Size = new System.Drawing.Size(238, 28);
             this.labelUtente.TabIndex = 21;
             this.labelUtente.Text = "Utente/ID of the patient: *";
             // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(12, 33);
+            this.textBoxName.Location = new System.Drawing.Point(14, 44);
+            this.textBoxName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(414, 23);
+            this.textBoxName.Size = new System.Drawing.Size(473, 27);
             this.textBoxName.TabIndex = 17;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(14, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(129, 21);
+            this.label1.Size = new System.Drawing.Size(159, 28);
             this.label1.TabIndex = 18;
             this.label1.Text = "Enter full name: *";
             // 
             // PatientRegistrationForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(439, 485);
+            this.ClientSize = new System.Drawing.Size(502, 647);
             this.Controls.Add(this.textBoxUnit);
             this.Controls.Add(this.labelUnit);
             this.Controls.Add(this.buttonReset);
@@ -222,6 +232,7 @@ namespace PatientService
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.Name = "PatientRegistrationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
