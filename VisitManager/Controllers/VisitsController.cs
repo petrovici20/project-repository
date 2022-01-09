@@ -11,7 +11,7 @@ using VisitManager.Models;
 namespace VisitManager.Controllers
 {
     /// <summary>
-    /// 
+    /// REST Controller for the CRUD methods
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
