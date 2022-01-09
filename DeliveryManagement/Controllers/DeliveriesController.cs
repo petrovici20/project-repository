@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace DeliveryManagement.Controllers
 {
     /// <summary>
-    /// 
+    /// REST Controller for the CRUD methods
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
