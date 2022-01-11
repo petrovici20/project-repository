@@ -32,8 +32,8 @@ namespace VisitManager.Controllers
 
             try
             {
-                // Get all Deliveries query
-                using (SqlCommand command = new("SELECT * FROM Visits", connection))
+                // Get all Visits query
+                using (SqlCommand command = new("SELECT * FROM Visit", connection))
                 {
                     using (SqlDataAdapter adapter = new(command))
                     {
