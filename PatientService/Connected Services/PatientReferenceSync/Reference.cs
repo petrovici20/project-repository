@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PatientReference
+namespace PatientReferenceSync
 {
     using System.Runtime.Serialization;
     
@@ -28,7 +28,7 @@ namespace PatientReference
         
         private string NameField;
         
-        private PatientReference.RNCCI RNCCITypologyField;
+        private PatientReferenceSync.RNCCI RNCCITypologyField;
         
         private int UtenteField;
         
@@ -98,7 +98,7 @@ namespace PatientReference
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public PatientReference.RNCCI RNCCITypology
+        public PatientReferenceSync.RNCCI RNCCITypology
         {
             get
             {
@@ -143,28 +143,37 @@ namespace PatientReference
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3-preview3.21351.2")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="PatientReference.IPatientRegistration")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="PatientReferenceSync.IPatientRegistration")]
     public interface IPatientRegistration
     {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPatientRegistration/AddPatient", ReplyAction="http://tempuri.org/IPatientRegistration/AddPatientResponse")]
-        System.Threading.Tasks.Task<string> AddPatientAsync(PatientReference.Patient patient);
+        string AddPatient(PatientReferenceSync.Patient patient);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPatientRegistration/AddPatient", ReplyAction="http://tempuri.org/IPatientRegistration/AddPatientResponse")]
+        System.Threading.Tasks.Task<string> AddPatientAsync(PatientReferenceSync.Patient patient);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPatientRegistration/AddPatientBulk", ReplyAction="http://tempuri.org/IPatientRegistration/AddPatientBulkResponse")]
-        System.Threading.Tasks.Task AddPatientBulkAsync(System.Collections.Generic.List<PatientReference.Patient> patients);
+        void AddPatientBulk(System.Collections.Generic.List<PatientReferenceSync.Patient> patients);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPatientRegistration/AddPatientBulk", ReplyAction="http://tempuri.org/IPatientRegistration/AddPatientBulkResponse")]
+        System.Threading.Tasks.Task AddPatientBulkAsync(System.Collections.Generic.List<PatientReferenceSync.Patient> patients);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPatientRegistration/GetPatients", ReplyAction="http://tempuri.org/IPatientRegistration/GetPatientsResponse")]
+        string GetPatients();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPatientRegistration/GetPatients", ReplyAction="http://tempuri.org/IPatientRegistration/GetPatientsResponse")]
         System.Threading.Tasks.Task<string> GetPatientsAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3-preview3.21351.2")]
-    public interface IPatientRegistrationChannel : PatientReference.IPatientRegistration, System.ServiceModel.IClientChannel
+    public interface IPatientRegistrationChannel : PatientReferenceSync.IPatientRegistration, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3-preview3.21351.2")]
-    public partial class PatientRegistrationClient : System.ServiceModel.ClientBase<PatientReference.IPatientRegistration>, PatientReference.IPatientRegistration
+    public partial class PatientRegistrationClient : System.ServiceModel.ClientBase<PatientReferenceSync.IPatientRegistration>, PatientReferenceSync.IPatientRegistration
     {
         
         /// <summary>
@@ -207,14 +216,29 @@ namespace PatientReference
         {
         }
         
-        public System.Threading.Tasks.Task<string> AddPatientAsync(PatientReference.Patient patient)
+        public string AddPatient(PatientReferenceSync.Patient patient)
+        {
+            return base.Channel.AddPatient(patient);
+        }
+        
+        public System.Threading.Tasks.Task<string> AddPatientAsync(PatientReferenceSync.Patient patient)
         {
             return base.Channel.AddPatientAsync(patient);
         }
         
-        public System.Threading.Tasks.Task AddPatientBulkAsync(System.Collections.Generic.List<PatientReference.Patient> patients)
+        public void AddPatientBulk(System.Collections.Generic.List<PatientReferenceSync.Patient> patients)
+        {
+            base.Channel.AddPatientBulk(patients);
+        }
+        
+        public System.Threading.Tasks.Task AddPatientBulkAsync(System.Collections.Generic.List<PatientReferenceSync.Patient> patients)
         {
             return base.Channel.AddPatientBulkAsync(patients);
+        }
+        
+        public string GetPatients()
+        {
+            return base.Channel.GetPatients();
         }
         
         public System.Threading.Tasks.Task<string> GetPatientsAsync()

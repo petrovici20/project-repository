@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PatientService
+namespace VisitService
 {
     class Program
     {

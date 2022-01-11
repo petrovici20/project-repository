@@ -32,6 +32,10 @@ namespace RequestService
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(mediaType));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static DataTable GetRequests()
         {
             //
@@ -68,6 +72,11 @@ namespace RequestService
             return table;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keyword"></param>
+        /// <returns></returns>
         public static DataTable Filter(string keyword)
         {
             //
@@ -104,6 +113,10 @@ namespace RequestService
             return table;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
         public static void Delete(int id)
         {
             //
